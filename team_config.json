@@ -1,0 +1,25 @@
+{
+  "team": "team",
+  "members": [
+    {
+      "login": "user_1",
+      "capacity": 9
+    },
+    {
+      "login": "user_2",
+      "capacity": 9
+    },
+    {
+      "login": "user_3",
+      "capacity": 9
+    },
+    {
+      "login": "user_4",
+      "capacity": 9
+    },
+    {
+      "login": "user_5",
+      "capacity": 9
+    }
+  ]
+}
