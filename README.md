@@ -12,11 +12,13 @@ CLI-утилита для анализа спринта по выгрузкам 
 ## 📦 Установка
 
 ### Через go install
+
 ```bash
 go install github.com/yesmishgan/sprint_report@latest
 ```
 
 ### Локальная сборка
+
 ```bash
 git clone https://github.com/yesmishgan/sprint_report.git
 cd sprint_report
@@ -27,15 +29,25 @@ go build -o sprint_report ./...
 
 ## ⚙️ Конфигурация команды
 
-`team_config.json`:
+Для корректной работы команды необходимо подготовить файл с конфигурацией команды, в котором будут описаны члены команды
+и их капаситет в рамках спринта `team_config.json`:
 
 ```json
 {
   "team": "backend-core",
   "members": [
-    { "login": "mike", "capacity": 9 },
-    { "login": "olga", "capacity": 9 },
-    { "login": "ivan", "capacity": 6 }
+    {
+      "login": "mike",
+      "capacity": 9
+    },
+    {
+      "login": "olga",
+      "capacity": 9
+    },
+    {
+      "login": "ivan",
+      "capacity": 6
+    }
   ]
 }
 ```
@@ -60,8 +72,14 @@ sprint_report -cmd report   -csv sprint_end.csv   -state sprint_state.json   -do
 
 ## 🧩 Примеры CSV-выгрузок
 
+Выгрузка CSV с информацией о задачах спринта должна содержать следующие обязательные поля из JIT:
 
-
+1. Assignee
+2. Issue key
+3. Story Points (системное название в выгрузке ```Custom field (Story Points)```)
+4. Responsible QA (системное название в выгрузке ```Custom field (Responsible QA))```)
+5. QA Estimate (системное название в выгрузке ```Custom field (QA Estimate)```)
+6. Status
 ---
 
 ## 📊 Примеры вывода
@@ -113,8 +131,9 @@ Planned = Σ Story Points (Assignee) + Σ QA Estimate (Responsible QA)
 ### Completed
 
 Учитывает и суммирует:
-1. SP задач, попавших в done-статусы 
-2. QA Estimate задач в done 
+
+1. SP задач, попавших в done-статусы
+2. QA Estimate задач в done
 3. Разницу в SP для частично выполнённых задач:
 
 ### Delivery
@@ -128,16 +147,21 @@ Delivery = (Completed / Planned) * 100
 ## 🔄 Типовой рабочий процесс
 
 В начале спринта:
+
 1. Делаем выгрузку задач, попавших в спринт команды
 2. Выполняем инициализацию спринта с указанием аргументов утилиты
+
 ```bash
 sprint_report -cmd init -csv sprint_start.csv -config team_config.json -state sprint_state.json
 ```
+
 3. Сохраняем промежуточный стейт спринта для последующего подсчета итоговой статистики по итогам прошедшего спринта
 
 В конце спринта:
+
 1. Делаем выгрузку задач из спринта
 2. Выполняем формирование отчета спринта с указанием аргументов утилиты
+
 ```bash
 sprint_report -cmd report -csv sprint_end.csv -state sprint_state.json -format table
 ```
