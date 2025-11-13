@@ -11,7 +11,7 @@ CLI-утилита для анализа спринта по выгрузкам 
 
 ## 📦 Установка
 
-### Через go install
+### Установка из репозитория
 
 ```bash
 go install github.com/yesmishgan/sprint_report@latest
@@ -24,6 +24,10 @@ git clone https://github.com/yesmishgan/sprint_report.git
 cd sprint_report
 go build -o sprint_report ./...
 ```
+
+### Готовый бинарник
+
+Также можно воспользоваться готовым бинарным файлом, если он у вас запустится ✨
 
 ---
 
